@@ -88,7 +88,15 @@ const App = () => {
 		setTodos(updatedTodos);
 	}, [todos]);
 
-	// create Unmark All button!
+	const unmarkAll = useCallback(() => {
+		const updatedTodos = todos.map((todo) => {
+			return {
+				...todo,
+				done: false,
+			};
+		});
+		setTodos(updatedTodos);
+	}, [todos]);
 
 	return (
 		<div>
@@ -102,6 +110,7 @@ const App = () => {
 				/>
 				<button>Add Todo</button>
 				<button onClick={markAllDone}>Mark All Done</button>
+				<button onClick={unmarkAll}>Unmark All</button>
 			</form>
 			<ul>
 				{todos.map((todo, index) => (
